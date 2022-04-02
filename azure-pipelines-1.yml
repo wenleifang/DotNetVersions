@@ -11,8 +11,8 @@ jobs:
 - job: TestJob
 
   steps:
-  - checkout: self
-    clean: true
+  - checkout: none
+
   - script: "echo Hello, world from $(hostname)!"
     displayName: 'Run a one-line script'
   
@@ -20,6 +20,10 @@ jobs:
       echo Add other tasks to build, test, and deploy your project.
       echo See https://aka.ms/yaml
     displayName: 'Run a multi-line script'
+  - task: VisualStudioTestPlatformInstaller@1
+    displayName: 'Install the Latest Visual Studio Test Platform'
+    inputs:
+      versionSelector: latestStable
   - task: VSTest@2
     displayName: 'Run smoke test'
     inputs:
