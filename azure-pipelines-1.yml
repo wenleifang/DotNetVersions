@@ -9,8 +9,6 @@ trigger:
 
 jobs:
 - job: TestJob
-  workspace:
-    clean: all
 
   steps:
   - checkout: self
