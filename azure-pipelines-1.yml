@@ -22,3 +22,15 @@ jobs:
       echo Add other tasks to build, test, and deploy your project.
       echo See https://aka.ms/yaml
     displayName: 'Run a multi-line script'
+  - task: VSTest@2
+    displayName: 'Run smoke test'
+    inputs:
+      testSelector: 'testAssemblies'
+      testAssemblyVer2: 'ST.ProtectTest.dll'
+      searchFolder: '$(Pipeline.Workspace)\drop\x64\Release\'
+      testFiltercriteria: 'TestCategory=SmokeTest'
+      uiTests: true
+      vsTestVersion: 'toolsInstaller'
+      runSettingsFile: '$(Pipeline.Workspace)\drop\x64\Release\SmokeTest.runsettings'
+      testRunTitle: 'SmokeTest'
+      diagnosticsEnabled: true
