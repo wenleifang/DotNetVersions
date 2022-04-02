@@ -15,7 +15,7 @@ jobs:
   steps:
   - checkout: self
     clean: true
-  - script: echo Hello, world from $(hostname)!
+  - script: "echo Hello, world from $(hostname)!"
     displayName: 'Run a one-line script'
   
   - script: |
