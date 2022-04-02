@@ -6,14 +6,15 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest'
+pool: devbox
+
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-
+steps:
+- checkout: none
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
