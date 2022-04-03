@@ -21,7 +21,7 @@ steps:
 #- checkout: none
 
 - download: SmokeTest
-  displayName: 'Download manifest generator'
+  displayName: 'Download Smoke Test'
   artifact: 'drop'
 - task: SSH@0
   inputs:
