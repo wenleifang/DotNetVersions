@@ -27,6 +27,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 - task: CopyFiles@2
+  enabled: false
   displayName: 'Publish binaries'
   inputs:
     SourceFolder: '$(Build.BinariesDirectory)'
@@ -38,7 +39,14 @@ steps:
      !**\*.iobj
      !**\*.ipdb
     TargetFolder: '$(Build.ArtifactStagingDirectory)\drop'
-
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish artifact'
+  inputs:
+    targetPath: '$(Build.SourcesDirectory)\bin\Release'
+    artifact: drop
+    publishLocation: filepath
+    fileSharePath: '\\WF-WIN10\BuildDrops\$(System.TeamProject)\Protect\$(Build.DefinitionName)\$(Build.BuildNumber)'
+    parallel: true
 - task: VSTest@2
   enabled: false
   inputs:
