@@ -26,6 +26,18 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+- task: CopyFiles@2
+  displayName: 'Publish binaries'
+  inputs:
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: |
+     **
+     !**\*.exp
+     !**\*.idb
+     !**\*.ilk
+     !**\*.iobj
+     !**\*.ipdb
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\drop'
 
 - task: VSTest@2
   enabled: false
