@@ -15,6 +15,14 @@ variables:
   buildConfiguration: 'Release'
 steps:
 - checkout: none
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH-LOCAL'
+    runOptions: 'commands'
+    commands: 'hostname'
+    interactiveSession: true
+    readyTimeout: '20000'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
