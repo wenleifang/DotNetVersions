@@ -5,8 +5,8 @@
 
 resources:
   pipelines:
-  - pipeline: SmokeTest
-    source: Smoke Test  
+  - pipeline: DotNetVersions
+    source: DotNetVersions
 trigger:
 - master
 
@@ -20,8 +20,8 @@ variables:
 steps:
 #- checkout: none
 
-- download: SmokeTest
-  displayName: 'Download Smoke Test'
+- download: DotNetVersions
+  displayName: 'Download DotNetVersions'
   artifact: 'drop'
 - task: SSH@0
   inputs:
